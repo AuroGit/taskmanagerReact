@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/taskmanagerReact/build/static/css/main.4c5705fb.css",
+    "main.js": "/taskmanagerReact/build/static/js/main.4452224c.js",
+    "index.html": "/taskmanagerReact/build/index.html",
+    "main.4c5705fb.css.map": "/taskmanagerReact/build/static/css/main.4c5705fb.css.map",
+    "main.4452224c.js.map": "/taskmanagerReact/build/static/js/main.4452224c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c5705fb.css",
+    "static/js/main.4452224c.js"
+  ]
+}
