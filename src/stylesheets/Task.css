@@ -1,0 +1,68 @@
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff5;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    transition-property: background-color, border, color;
+    transition-duration: .2s;
+}
+.task:hover {
+    background-color: white;
+    color: black;
+}
+.task.checked:not(:hover) { background-color: #cf04; }
+
+.task-name {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+}
+.task-name, .task input.check { cursor: pointer; }
+.task input.check {
+    --size: 15px;
+    position: relative;
+    margin-right: 10px;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    width: var(--size);
+    height: var(--size);
+    background-color: #fff8;
+    border-radius: 3px;
+}
+.task.checked input.check { background-color: #cf0; }
+.task.checked input.check::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 5px;
+    border: solid 3px #f80;
+    border-top: 0px;
+    border-right: 0px;
+    transform: translate(-30%, -90%) rotate(-45deg);
+}
+.task:not(.checked) input.check { border: solid 1px black; }
+.task.checked input.check + p { text-decoration: line-through; }
+
+.task .delete-btn {
+    display: flex;
+    height: 100%;
+    font-weight: 700;
+    border-left: solid 1px white;
+    padding-left: 10px;
+    cursor: pointer;
+    transition-property: border;
+    transition-duration: .2s;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+.task:hover .delete-btn { border-color: black; }
+.delete-btn:hover { color: #c40; }

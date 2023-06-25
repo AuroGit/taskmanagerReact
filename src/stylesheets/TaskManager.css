@@ -1,0 +1,11 @@
+.tasklist-container {
+    width: 100%;
+    max-width: 680px;
+}
+
+.tasklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

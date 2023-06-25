@@ -1,0 +1,36 @@
+#task-input {
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-block: 25px;
+    transition: box-shadow .2s;
+}
+
+#task-input input, .add-task-btn {
+    height: 100%;
+    border: none;
+    padding-inline: 20px;
+}
+
+#task-input input {
+    min-width: 0;
+    width: auto;
+    flex: 1 1;
+    font-size: 20px;
+}
+#task-input input:focus { outline: none; }
+#task-input:has(input:focus) { box-shadow: 0 0 15px #888; }
+
+#task-input .add-task-btn {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+#task-input .add-task-btn:hover { background-color: #ff4; }
