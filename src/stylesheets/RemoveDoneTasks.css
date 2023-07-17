@@ -1,0 +1,26 @@
+.rdt-btn-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30px 20px;
+    background-image: linear-gradient(transparent, #356 40%);
+}
+
+.rdt-btn {
+    width: 100%;
+    padding-block: 10px;
+    border-radius: 50px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    cursor: pointer;
+    transition-property: background, color, opacity;
+    transition-duration: .2s;
+}
+.rdt-btn:not(.active) { opacity: .5; cursor: default;}
+
+.rdt-btn.active:hover {
+    background-color: #f80;
+    color: #fff;
+}

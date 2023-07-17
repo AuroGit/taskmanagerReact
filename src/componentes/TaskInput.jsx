@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import '../stylesheets/TaskInput.css';
 
 function TaskInput({ addTask }) {
-	const [input, setInput] = useState('');
+
+	const inputRef = useRef(null);
+	const [ input, setInput ] = useState('');
 
 	return (
 		<div id="task-input">
-			<input 
+			<input ref={ inputRef }
 				type="text"
 				placeholder="...Nueva Tarea"
-				maxLength={180}
+				maxLength={ 180 }
 				value={ input }
 				onChange={(e) => setInput(e.target.value)}
 			/>
