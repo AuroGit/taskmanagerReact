@@ -1,24 +1,30 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../stylesheets/Task.css'
 
 function Task({ id, texto, deleteTask, toggleDoneTask, checked }) {
 	
 	const taskRef = useRef(null);
 	const [name, setName] = useState(texto);
-	const [readOnly, setReadOnly] = useState(true)
+	const [readOnly, setReadOnly] = useState(true);
 	const [onEdit, setOnEdit] = useState(false);
+	const [scrollable, setScrollable] = useState(null);
 
 	const setToEdit = () => {
 		setOnEdit(true);
 		setReadOnly(false);
 		taskRef.current.focus();
-	}
+	};
+
+	useEffect(() => {
+		taskRef.current.scrollWidth > taskRef.current.clientWidth ?
+		setScrollable(true) : setScrollable(false);
+	}, [name]);
 
 	return (
 		<li key={id} id={id}
 			className={checked ? 'task checked' : 'task'}>
 
-			<div className="task-name">
+			<div className={scrollable ? 'task-name scroll' : 'task-name'}>
 				<input
 					type="checkbox" 
 					className="check"

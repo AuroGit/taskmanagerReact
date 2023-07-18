@@ -21,9 +21,9 @@ function TaskInput({ addTask }) {
 				onClick={()=> {
 					if (input) {
 						addTask({
-							id:'', 
-							texto: input.trim(), 
-							checked:false
+							'id':'', 
+							'texto': input.trim(), 
+							'checked':false
 						});
 						setInput('');
 					}

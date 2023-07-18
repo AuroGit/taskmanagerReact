@@ -16,10 +16,18 @@
 .task-name {
     padding: 15px 20px;
     display: flex;
+    width: 100%;
     align-items: center;
     padding-right: 15px;
+    margin-right: 20px;
 }
-.task-name, .task .check { cursor: pointer; }
+.task-name.scroll::after {
+    content: '...';
+    display: block;
+    width: 20px;
+    height: 15px;
+}
+
 .task .check {
     --size: 15px;
     position: relative;
@@ -31,6 +39,7 @@
     height: var(--size);
     background-color: #fff8;
     border-radius: 3px;
+    cursor: pointer;
 }
 .task.checked .check { background-color: #cf0; }
 .task.checked .check::after {
@@ -54,12 +63,11 @@
     border: none;
     font-family: 'Caveat', cursive;
     font-size: 24px;
-    flex-shrink: 1;
     width: 100%;
     transition: color;
+    text-overflow: auto;
 }
 .task:not(:hover) .task-text[readonly] { color: #fff; }
-/* .task-name .task-text:focus {  } */
 .task-name .task-text[readonly] { cursor: default; }
 .task-name .task-text[readonly]:focus-visible { outline: none; }
 

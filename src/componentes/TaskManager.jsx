@@ -1,23 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskInput from "./TaskInput";
 import Task from "./Task";
 import RemoveDoneBtn from "./RemoveDoneBtn";
 import '../stylesheets/TaskManager.css';
 
 function TaskManager() {
-	const [list, setList] = useState([]);
-	const [activeBtn, setActiveBtn] = useState(false);
+
+	const savedList = JSON.parse(window.localStorage.getItem('current'));
+	const [list, setList] = useState(savedList || []);
+	const [activeRDTBtn, setActiveRDTBtn] = useState(false);
+	const [activeCLBtn, setActiveCLBtn] = useState(false);
+	
+	useEffect(() => {
+		savedList &&
+		setList(savedList);
+		savedList.length > 0 && setActiveCLBtn(true);
+		savedList.filter((item) => item.checked).length > 0 &&
+		setActiveRDTBtn(true);
+	}, []);
+	useEffect(() => {
+		window.localStorage.setItem('current', JSON.stringify(list));
+	}, [list]);
 
 	const addToList = (task) => {
 		task.id = Date.now();
 		setList([task, ...list]);
+		setActiveCLBtn(true);
 	};
 	const deleteFromList = (id) => {
 		const newList = list.filter((item) => item.id !== id)
 		setList(newList);
 
 		newList.filter((item) => item.checked).length > 0 ?
-		setActiveBtn(true) : setActiveBtn(false);
+		setActiveRDTBtn(true) : setActiveRDTBtn(false);
+		newList.length === 0 && setActiveCLBtn(false);
 	};
 	const toggleDoneTask = (id)=> {
 		const newList = list.map(item => {
@@ -27,13 +43,19 @@ function TaskManager() {
 		setList(newList);
 
 		newList.filter((item) => item.checked).length > 0 ?
-		setActiveBtn(true) : setActiveBtn(false);
+		setActiveRDTBtn(true) : setActiveRDTBtn(false);
 	};
 	const removeDoneTasks = () => {
         const newList = list.filter((item) => !item.checked);
         setList(newList);
-		  setActiveBtn(false);
-   };
+		setActiveRDTBtn(false);
+		newList.length === 0 && setActiveCLBtn(false);
+   	};
+	const removeAllTasks = () => {
+        setList([]);
+		setActiveRDTBtn(false);
+		setActiveCLBtn(false);
+   	};
 
    return (
       <div className="tasklist-container">
@@ -55,8 +77,10 @@ function TaskManager() {
 				}
 			</ul>
 			<RemoveDoneBtn 
-				active={ activeBtn }
+				activeRDTBtn={ activeRDTBtn }
+				activeCLBtn={ activeCLBtn }
 				tasks={ list } 
+				removeAllTasks={ removeAllTasks }
 				removeDoneTasks={ removeDoneTasks }/>
       </div>
    );
