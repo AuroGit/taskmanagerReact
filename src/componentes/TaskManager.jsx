@@ -12,11 +12,12 @@ function TaskManager() {
 	const [activeCLBtn, setActiveCLBtn] = useState(false);
 	
 	useEffect(() => {
-		savedList &&
-		setList(savedList);
-		savedList.length > 0 && setActiveCLBtn(true);
-		savedList.filter((item) => item.checked).length > 0 &&
-		setActiveRDTBtn(true);
+		if (savedList) {
+			setList(savedList);
+			savedList.length > 0 && setActiveCLBtn(true);
+			savedList.filter((item) => item.checked).length > 0 &&
+			setActiveRDTBtn(true);
+		}
 	}, []);
 	useEffect(() => {
 		window.localStorage.setItem('current', JSON.stringify(list));
